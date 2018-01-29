@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("form").submit(function(event){
+                event.preventDefault();
+                var number1 = $("#number-one").val();
+                var number2 = $("#number-two").val();
+                var submit = $("#submit").val();
+                var math = $("#math").val();
+                $("#result").load("calc.php", {
+                    number1: number1,
+                    number2: number2,
+                    math: math,
+                    submit: submit
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Calculator</h1>
+    <form action="calc.php" method="post">
+        <input type="number" id="number-one" name="number1" placeholder="Enter number"><br>
+        <input type="number" id="number-two" name="number2" placeholder="Enter number"><br>
+        <select id="math" name="math">
+            <option value="add">+</option>
+            <option value="subtract">-</option>
+            <option value="multiply">*</option>
+            <option value="divide">/</option>
+        </select><br>
+        <button id="submit" name="submit">Submit</button><br>
+        <p>Result:</p><p id="result"></p>
+
+    </form>
+</body>
+</html>
